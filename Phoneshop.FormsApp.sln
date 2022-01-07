@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31710.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phoneshop.WinForms", "Phoneshop.WinForms\Phoneshop.WinForms.csproj", "{96D01B06-C7FA-49F0-9190-5D143A2628D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{A5AFA1EE-651C-4992-B7DC-C7EBC8E21B67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Business", "2. Business", "{DFDEEC94-94BC-4BD8-8619-BF0B02078942}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShop.Domain", "PhoneShop.Domain\PhoneShop.Domain.csproj", "{0ECECD96-407A-4ED1-A324-F31F7C641953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShop.Business", "PhoneShop.Business\PhoneShop.Business.csproj", "{43718B2F-D095-463C-AA49-4CEF91358D4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShop.Xunit", "PhoneShop.Xunit\PhoneShop.Xunit.csproj", "{90AA4208-FDD3-48D5-A51B-801F48044F9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96D01B06-C7FA-49F0-9190-5D143A2628D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D01B06-C7FA-49F0-9190-5D143A2628D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D01B06-C7FA-49F0-9190-5D143A2628D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D01B06-C7FA-49F0-9190-5D143A2628D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ECECD96-407A-4ED1-A324-F31F7C641953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECECD96-407A-4ED1-A324-F31F7C641953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ECECD96-407A-4ED1-A324-F31F7C641953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ECECD96-407A-4ED1-A324-F31F7C641953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43718B2F-D095-463C-AA49-4CEF91358D4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43718B2F-D095-463C-AA49-4CEF91358D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43718B2F-D095-463C-AA49-4CEF91358D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43718B2F-D095-463C-AA49-4CEF91358D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90AA4208-FDD3-48D5-A51B-801F48044F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90AA4208-FDD3-48D5-A51B-801F48044F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90AA4208-FDD3-48D5-A51B-801F48044F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90AA4208-FDD3-48D5-A51B-801F48044F9C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0ECECD96-407A-4ED1-A324-F31F7C641953} = {A5AFA1EE-651C-4992-B7DC-C7EBC8E21B67}
+		{43718B2F-D095-463C-AA49-4CEF91358D4B} = {DFDEEC94-94BC-4BD8-8619-BF0B02078942}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1CF241F-2F73-4657-AAD3-A16B269E510A}
+	EndGlobalSection
+EndGlobal
