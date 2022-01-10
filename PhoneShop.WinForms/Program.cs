@@ -1,8 +1,9 @@
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Phoneshop.Business;
 using Phoneshop.Business.Interfaces;
-using Phoneshop.Business.Repositories;
 using Phoneshop.Domain.Interfaces;
+using PhoneShop.Business;
+using PhoneShop.Business.Repositories;
 using System;
 using System.Windows.Forms;
 
@@ -31,9 +32,10 @@ namespace Phoneshop.WinForms
 
         private static void ConfigureServices(ServiceCollection services)
         {
+            services.AddDbContext<DataContext>();
             services.AddScoped<IPhoneService, PhoneService>();
             services.AddScoped<IBrandService, BrandService>();
-            services.AddScoped(typeof(IRepository<>), typeof(AdoRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
 
             services.AddScoped<PhoneOverview>();
         }

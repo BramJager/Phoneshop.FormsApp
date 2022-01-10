@@ -29,7 +29,7 @@ namespace Phoneshop.WinForms
                 },
                 Type = txtType.Text,
                 Description = txtDescription.Text,
-                Price = Convert.ToDouble(txtPrice.Text),
+                Price = Convert.ToDecimal(txtPrice.Text),
                 Stock = Convert.ToInt32(txtStock.Text)
             });
 

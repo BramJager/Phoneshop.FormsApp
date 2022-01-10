@@ -1,11 +1,8 @@
-﻿using Phoneshop.Business.Extensions;
-using Phoneshop.Business.Interfaces;
+﻿using Phoneshop.Business.Interfaces;
 using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
 using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Phoneshop.Business
 {
@@ -16,7 +13,6 @@ namespace Phoneshop.Business
         public BrandService(IRepository<Brand> brandRepository)
         {
             this.brandRepository = brandRepository;
-            this.brandRepository.Mapper = PhoneMapper;
         }
 
         public Brand GetOrCreate(string name)
@@ -24,9 +20,7 @@ namespace Phoneshop.Business
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
 
-            var command = new SqlCommand("SELECT * FROM brands WHERE name = '" + name + "'");
-
-            var result = brandRepository.GetRecord(command);
+            var result = brandRepository.Get().FirstOrDefault(x => x.Name == name);
 
             if (result == null)
             {
@@ -39,19 +33,18 @@ namespace Phoneshop.Business
 
         public void Create(Brand brand)
         {
-            var command = new SqlCommand("INSERT INTO Brands (Name) VALUES (@BrandName)");
-            command.Parameters.AddWithValue("BrandName", brand.Name);
-            brandRepository.ExecuteNonQuery(command);
+            brandRepository.Create(brand);
+            brandRepository.Save();
         }
 
-        [ExcludeFromCodeCoverage]
-        public static Brand PhoneMapper(SqlDataReader reader)
-        {
-            return new()
-            {
-                Id = reader.GetInt("Id"),
-                Name = reader.GetString("Name"),
-            };
-        }
+        //[ExcludeFromCodeCoverage]
+        //public static Brand PhoneMapper(SqlDataReader reader)
+        //{
+        //    return new()
+        //    {
+        //        Id = reader.GetInt("Id"),
+        //        Name = reader.GetString("Name"),
+        //    };
+        //}
     }
 }

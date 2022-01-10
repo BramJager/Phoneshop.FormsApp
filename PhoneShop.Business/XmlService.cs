@@ -53,7 +53,7 @@ namespace Phoneshop.Business
                                 break;
                             case "Price":
                                 if (reader.Read())
-                                    p.Price = Convert.ToDouble(reader.Value);
+                                    p.Price = Convert.ToDecimal(reader.Value);
                                 break;
                             case "Description":
                                 if (reader.Read())

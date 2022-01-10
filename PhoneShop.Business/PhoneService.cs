@@ -1,12 +1,11 @@
-﻿using Phoneshop.Business.Extensions;
-using Phoneshop.Business.Interfaces;
+﻿using Phoneshop.Business.Interfaces;
 using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Phoneshop.Business
 {
@@ -20,25 +19,18 @@ namespace Phoneshop.Business
         {
             this.phoneRepository = phoneRepository;
             this.brandService = brandService;
-            phoneRepository.Mapper = PhoneMapper;
         }
 
         public Phone Get(int id)
         {
             if (id <= 0) return null;
 
-            using (var command = new SqlCommand("SELECT * FROM phones WHERE Id=" + id))
-            {
-                return phoneRepository.GetRecord(command);
-            }
+            return phoneRepository.Get(id);
         }
 
         public IEnumerable<Phone> Get()
         {
-            using (var command = new SqlCommand("SELECT phones.*, Brands.Id as BrandsId, Brands.Name as BrandName FROM phones INNER JOIN Brands ON phones.BrandId = brands.id Order By Brands.Name"))
-            {
-                return phoneRepository.GetRecords(command);
-            }
+            return phoneRepository.Get();
         }
 
         public IEnumerable<Phone> Search(string query)
@@ -46,33 +38,23 @@ namespace Phoneshop.Business
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentNullException(nameof(query));
 
-            var moviesFromDb = phoneRepository.GetRecords(new SqlCommand($"SELECT phones.*, Brands.Id as BrandsId, Brands.Name as BrandName FROM phones " +
-                $"INNER JOIN Brands ON phones.BrandId = brands.id " +
-                $"WHERE Type like '%{query}%' OR description like '%{query}%' OR Brands.Name like '%{query}%' Order By Brands.Name"));
+            var phonesFromDb = phoneRepository.Get().Where(x => x.FullName.Contains(query));
 
-            return moviesFromDb;
+            return phonesFromDb;
         }
 
         public void Create(Phone phone)
         {
-            var found = phoneRepository
-                .GetRecord(new SqlCommand($@"select TOP 1 * FROM phones P
-                                            INNER JOIN brands B on P.brandid = B.Id
-                                            WHERE P.[Type] = '{phone.Type}' AND B.Name = '{phone.Brand.Name}'"));
+            var found = phoneRepository.Get(phone.Id);
 
             if (found != null)
                 throw new Exception($"Phone {phone.Brand.Name} - {phone.Type} already exists");
 
             var brand = brandService.GetOrCreate(phone.Brand.Name);
+            phone.Brand = brand;
 
-            var command = new SqlCommand("INSERT INTO Phones (BrandId, Stock, Type, Description, Price) VALUES (@BrandId, @Stock, @Type, @Description, @Price)");
-            command.Parameters.AddWithValue("@BrandId", brand.Id);
-            command.Parameters.AddWithValue("@Description", phone.Description);
-            command.Parameters.AddWithValue("@Type", phone.Type);
-            command.Parameters.AddWithValue("@Price", phone.Price);
-            command.Parameters.AddWithValue("@Stock", phone.Stock);
-
-            phoneRepository.ExecuteNonQuery(command);
+            phoneRepository.Create(phone);
+            phoneRepository.Save();
         }
 
         public void Create(List<Phone> phones)
@@ -86,29 +68,28 @@ namespace Phoneshop.Business
             if (id <= 0)
                 throw new ArgumentNullException(nameof(id));
 
-            var command = new SqlCommand("DELETE FROM Phones WHERE Id=@id");
-            command.Parameters.AddWithValue("@id", id);
-
-            phoneRepository.ExecuteNonQuery(command);
+            var phone = phoneRepository.Get(id);
+            phoneRepository.Delete(phone);
+            phoneRepository.Save();
         }
 
-        [ExcludeFromCodeCoverage]
-        public Phone PhoneMapper(SqlDataReader reader)
-        {
-            return new Phone()
-            {
-                Id = reader.GetInt("Id"),
-                BrandId = reader.GetInt("brandid"),
-                Description = reader.GetString("Description"),
-                Price = reader.GetDouble("price"),
-                Stock = reader.GetInt("stock"),
-                Type = reader.GetString("Type"),
-                Brand = new Brand
-                {
-                    Id = reader.GetInt("BrandsId"),
-                    Name = reader.GetString("BrandName")
-                }
-            };
-        }
+        //[ExcludeFromCodeCoverage]
+        //public Phone PhoneMapper(SqlDataReader reader)
+        //{
+        //    return new Phone()
+        //    {
+        //        Id = reader.GetInt("Id"),
+        //        BrandId = reader.GetInt("brandid"),
+        //        Description = reader.GetString("Description"),
+        //        Price = reader.GetDouble("price"),
+        //        Stock = reader.GetInt("stock"),
+        //        Type = reader.GetString("Type"),
+        //        Brand = new Brand
+        //        {
+        //            Id = reader.GetInt("BrandsId"),
+        //            Name = reader.GetString("BrandName")
+        //        }
+        //    };
+        //}
     }
 }

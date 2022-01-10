@@ -28,4 +28,10 @@
     <ProjectReference Include="..\PhoneShop.Business\PhoneShop.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BrandTests\" />
+    <Folder Include="PhoneTests\" />
+    <Folder Include="TestResults\" />
+  </ItemGroup>
+
 </Project>

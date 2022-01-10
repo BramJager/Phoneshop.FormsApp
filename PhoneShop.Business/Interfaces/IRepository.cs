@@ -7,14 +7,20 @@ namespace Phoneshop.Business.Interfaces
 
     public interface IRepository<T> where T : class
     {
-        Func<SqlDataReader, T> Mapper { set; }
+        T Get(int id);
+        IEnumerable<T> Get();
+        void Delete(T entity);
+        void Create(T entity);
+        void Save();
 
-        void Status(bool IsError, string strErrMsg);
+        //Func<SqlDataReader, T> Mapper { set; }
 
-        void GetDataCount(int count);
-        void ExecuteNonQuery(SqlCommand command);
-        IEnumerable<T> GetRecords(SqlCommand command);
-        T GetRecord(SqlCommand command);
-        IEnumerable<T> ExecuteStoredProc(SqlCommand command, string CountColName = "TotalCount");
+        //void Status(bool IsError, string strErrMsg);
+
+        //void GetDataCount(int count);
+        //void ExecuteNonQuery(SqlCommand command);
+        //IEnumerable<T> GetRecords(SqlCommand command);
+        //T GetRecord(SqlCommand command);
+        //IEnumerable<T> ExecuteStoredProc(SqlCommand command, string CountColName = "TotalCount");
     }
 }
