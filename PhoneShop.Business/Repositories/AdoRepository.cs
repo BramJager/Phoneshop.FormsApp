@@ -1,4 +1,4 @@
-﻿using Phoneshop.Domain.Interfaces;
+﻿using Phoneshop.Business.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;

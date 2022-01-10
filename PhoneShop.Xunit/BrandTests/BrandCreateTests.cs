@@ -5,6 +5,7 @@ using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
 using System.Data.SqlClient;
 using System;
+using Phoneshop.Business.Interfaces;
 
 namespace PhoneShop.Xunit.BrandTests
 {

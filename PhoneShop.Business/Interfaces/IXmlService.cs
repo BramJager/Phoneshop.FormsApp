@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Phoneshop.Domain.Interfaces
+namespace Phoneshop.Business.Interfaces
 {
     public interface IXmlService
     {

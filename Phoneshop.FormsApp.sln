@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Business", "2. Business", "{DFDEEC94-94BC-4BD8-8619-BF0B02078942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShop.Domain", "PhoneShop.Domain\PhoneShop.Domain.csproj", "{0ECECD96-407A-4ED1-A324-F31F7C641953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneShop.Domain", "PhoneShop.Domain\PhoneShop.Domain.csproj", "{0ECECD96-407A-4ED1-A324-F31F7C641953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShop.Business", "PhoneShop.Business\PhoneShop.Business.csproj", "{43718B2F-D095-463C-AA49-4CEF91358D4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneShop.Business", "PhoneShop.Business\PhoneShop.Business.csproj", "{43718B2F-D095-463C-AA49-4CEF91358D4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShop.Xunit", "PhoneShop.Xunit\PhoneShop.Xunit.csproj", "{90AA4208-FDD3-48D5-A51B-801F48044F9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneShop.Xunit", "PhoneShop.Xunit\PhoneShop.Xunit.csproj", "{90AA4208-FDD3-48D5-A51B-801F48044F9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
