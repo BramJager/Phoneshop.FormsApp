@@ -28,7 +28,7 @@ namespace PhoneShop.Xunit.PhoneTests
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
-        public void Should_ReturnNull_WhenIdIsZeroOrUnder(int id)
+        public void Should_ReturnNullOnGet_When_IdIsZeroOrUnder(int id)
         {
             //Arrange
 
@@ -160,6 +160,35 @@ namespace PhoneShop.Xunit.PhoneTests
             //Assert
             phoneRepository.Verify(r => r.ExecuteNonQuery(It.IsAny<SqlCommand>()), Times.Exactly(3));
             brandRepository.Verify(r => r.GetRecord(It.IsAny<SqlCommand>()), Times.Exactly(3));
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void Should_ThrowArgumentNullException_When_IdIsZeroOrLower(int id)
+        {
+            //Arrange
+
+
+            //Act
+            Action action = () => phoneService.Delete(id);
+
+            //Assert
+            Exception exception = Assert.Throws<ArgumentNullException>(action);
+            Assert.Equal("Value cannot be null. (Parameter 'id')", exception.Message);
+        }
+
+        [Fact]
+        public void Should_DeletePhone()
+        {
+            //Arrange
+            int id = 1;
+
+            //Act
+            phoneService.Delete(id);
+
+            //Assert
+            phoneRepository.Verify(r => r.ExecuteNonQuery(It.IsAny<SqlCommand>()), Times.Once);
         }
     }
 }
