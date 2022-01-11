@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Phoneshop.Business.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class DataRowExtensions
     {
         public static int GetInt(this SqlDataReader row, string columnName)

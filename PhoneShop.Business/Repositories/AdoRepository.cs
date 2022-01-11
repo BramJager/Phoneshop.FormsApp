@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Phoneshop.Business.Repositories
 {
+    [ExcludeFromCodeCoverage]
     public class AdoRepository<T> : IRepository<T> where T : class
     {
         private SqlConnection _connection;
