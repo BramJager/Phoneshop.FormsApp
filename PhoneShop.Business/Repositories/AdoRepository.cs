@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Configuration;
 
 namespace Phoneshop.Business.Repositories
 {
@@ -15,9 +16,9 @@ namespace Phoneshop.Business.Repositories
 
         public Func<SqlDataReader, T> Mapper { private get; set; }
 
-        public AdoRepository()
+        public AdoRepository(IConfiguration configuration)
         {
-            _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["PhoneshopDB"].ConnectionString);
+            _connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
         }
 
         public void Status(bool IsError, string strErrMsg) { }
@@ -30,7 +31,6 @@ namespace Phoneshop.Business.Repositories
             _connection.Open();
             command.ExecuteNonQuery();
             _connection.Close();
-            //_connection.Dispose();
         }
 
         public IEnumerable<T> GetRecords(SqlCommand command)
@@ -65,7 +65,6 @@ namespace Phoneshop.Business.Repositories
             {
                 reader.Close();
                 _connection.Close();
-                //_connection.Dispose();
             }
 
             return list;
@@ -97,7 +96,6 @@ namespace Phoneshop.Business.Repositories
             {
                 reader.Close();
                 _connection.Close();
-                //_connection.Dispose();
             }
             return record;
         }
@@ -134,7 +132,6 @@ namespace Phoneshop.Business.Repositories
             {
                 reader.Close();
                 _connection.Close();
-                //_connection.Dispose();
             }
             return list;
         }
