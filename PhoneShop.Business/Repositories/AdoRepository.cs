@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Linq.Expressions;
 
 namespace Phoneshop.Business.Repositories
 {
@@ -44,6 +45,16 @@ namespace Phoneshop.Business.Repositories
         }
 
         public T GetT(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetWithRelatedData(int id, params Expression<Func<T, object>>[] includes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<T> GetWithRelatedData(params Expression<Func<T, object>>[] includes)
         {
             throw new NotImplementedException();
         }

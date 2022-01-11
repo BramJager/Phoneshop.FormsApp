@@ -25,12 +25,12 @@ namespace Phoneshop.Business
         {
             if (id <= 0) return null;
 
-            return phoneRepository.Get(id);
+            return phoneRepository.GetWithRelatedData(id, d => d.Brand);
         }
 
         public IEnumerable<Phone> Get()
         {
-            return phoneRepository.Get();
+            return phoneRepository.GetWithRelatedData(d => d.Brand);
         }
 
         public IEnumerable<Phone> Search(string query)

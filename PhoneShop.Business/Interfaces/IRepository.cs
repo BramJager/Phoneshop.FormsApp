@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq.Expressions;
 
 namespace Phoneshop.Business.Interfaces
 {
@@ -12,6 +13,8 @@ namespace Phoneshop.Business.Interfaces
         void Delete(T entity);
         void Create(T entity);
         void Save();
+        T GetWithRelatedData(int id, params Expression<Func<T, object>>[] includes);
+        IEnumerable<T> GetWithRelatedData(params Expression<Func<T, object>>[] includes);
 
         //Func<SqlDataReader, T> Mapper { set; }
 
