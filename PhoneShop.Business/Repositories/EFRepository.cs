@@ -35,28 +35,30 @@ namespace PhoneShop.Business.Repositories
             return dataContext.Set<T>().Find(id);
         }
 
-        public T GetWithRelatedData(int id, params Expression<Func<T, object>>[] includes)
+        public IQueryable<T> GetWithRelatedData(int id, params Expression<Func<T, object>>[] includes)
         {
             var query = dataContext.Set<T>();
+            IQueryable<T> queryable = query.AsQueryable();
 
             foreach (var include in includes)
             {
-                query.Include(include);
+                queryable = query.Include(include);
             }
 
-            return query.Find(id);
+            return queryable;
         }
 
         public IEnumerable<T> GetWithRelatedData(params Expression<Func<T, object>>[] includes)
         {
             var query = dataContext.Set<T>();
+            IQueryable<T> queryable = query.AsQueryable();
 
             foreach (var include in includes)
             {
-                query.Include(include);
+                queryable = query.Include(include);
             }
 
-            return query.ToList();
+            return queryable.ToList();
         }
 
         public void Save()

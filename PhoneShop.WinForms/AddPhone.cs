@@ -51,10 +51,13 @@ namespace Phoneshop.WinForms
                 messages.AppendLine("Type is required");
             if (string.IsNullOrEmpty(txtDescription.Text))
                 messages.AppendLine("Description is required");
-            if (string.IsNullOrEmpty(txtPrice.Text) || Convert.ToInt32(txtPrice.Text) <= 0)
-                messages.AppendLine("Price is invalid. It can't be negative.");
-            if (string.IsNullOrEmpty(txtStock.Text) || Convert.ToInt32(txtStock.Text) <= 0)
+            if (string.IsNullOrEmpty(txtPrice.Text) || Convert.ToDecimal(txtPrice.Text) < 0)
+                messages.AppendLine("Price is invalid. It can't be zero or lower.");            
+            if (string.IsNullOrEmpty(txtStock.Text) || !int.TryParse(txtStock.Text, out _))
+                messages.AppendLine("Stock is invalid. It has to be a whole number.");
+            if (int.TryParse(txtStock.Text, out int result) && result < 0)
                 messages.AppendLine("Stock is invalid. It can't be negative.");
+
 
             if (messages.Length > 0)
             {

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Linq.Expressions;
+using System.Linq;
 
 namespace Phoneshop.Business.Repositories
 {
@@ -60,6 +61,11 @@ namespace Phoneshop.Business.Repositories
         }
 
         public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable<T> IRepository<T>.GetWithRelatedData(int id, params Expression<Func<T, object>>[] includes)
         {
             throw new NotImplementedException();
         }

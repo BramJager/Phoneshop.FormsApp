@@ -25,7 +25,7 @@ namespace Phoneshop.Business
         {
             if (id <= 0) return null;
 
-            return phoneRepository.GetWithRelatedData(id, d => d.Brand);
+            return phoneRepository.GetWithRelatedData(id, d => d.Brand).FirstOrDefault(p => p.Id == id);
         }
 
         public IEnumerable<Phone> Get()
