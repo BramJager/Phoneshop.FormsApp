@@ -36,15 +36,5 @@ namespace Phoneshop.Business
             brandRepository.Create(brand);
             brandRepository.Save();
         }
-
-        //[ExcludeFromCodeCoverage]
-        //public static Brand PhoneMapper(SqlDataReader reader)
-        //{
-        //    return new()
-        //    {
-        //        Id = reader.GetInt("Id"),
-        //        Name = reader.GetString("Name"),
-        //    };
-        //}
     }
 }

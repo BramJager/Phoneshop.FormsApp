@@ -71,24 +71,5 @@ namespace Phoneshop.Business
             phoneRepository.Delete(phone);
             phoneRepository.Save();
         }
-
-        //[ExcludeFromCodeCoverage]
-        //public Phone PhoneMapper(SqlDataReader reader)
-        //{
-        //    return new Phone()
-        //    {
-        //        Id = reader.GetInt("Id"),
-        //        BrandId = reader.GetInt("brandid"),
-        //        Description = reader.GetString("Description"),
-        //        Price = reader.GetDouble("price"),
-        //        Stock = reader.GetInt("stock"),
-        //        Type = reader.GetString("Type"),
-        //        Brand = new Brand
-        //        {
-        //            Id = reader.GetInt("BrandsId"),
-        //            Name = reader.GetString("BrandName")
-        //        }
-        //    };
-        //}
     }
 }

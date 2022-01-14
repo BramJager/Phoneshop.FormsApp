@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Phoneshop.Business.Interfaces;
 
 namespace PhoneShop.Business.Repositories
 {
+    [ExcludeFromCodeCoverage]
     public class EFRepository<T> : IRepository<T> where T : class
     {
         private readonly DataContext dataContext;

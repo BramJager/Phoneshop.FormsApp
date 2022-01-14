@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Phoneshop.Business;
 using Phoneshop.Business.Interfaces;
-using Phoneshop.Business.Repositories;
 using Phoneshop.Domain.Interfaces;
 using PhoneShop.Business;
 using PhoneShop.Business.Repositories;

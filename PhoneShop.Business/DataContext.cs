@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Phoneshop.Domain.Entities;
-using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PhoneShop.Business
 {
+    [ExcludeFromCodeCoverage]
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions options) : base(options)

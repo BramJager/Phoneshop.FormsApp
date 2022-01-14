@@ -2,7 +2,6 @@
 using Phoneshop.Business;
 using Phoneshop.Business.Interfaces;
 using Phoneshop.Domain.Entities;
-using Xunit;
 
 namespace PhoneShop.TestEF.PhoneTests
 {

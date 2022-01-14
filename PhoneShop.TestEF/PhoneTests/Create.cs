@@ -15,7 +15,7 @@ namespace PhoneShop.TestEF.PhoneTests
         {
             //Arrange
             int id = 1;
-            var phone = new Phone() { Id = id, Brand = new Brand() { Name = "test"}, Type = "test" };
+            var phone = new Phone() { Id = id, Brand = new Brand() { Id = 1, Name = "test" }, Type = "test", BrandId = 1, Description = "test", Price = 1, Stock = 1 };
             phoneRepository.Setup(x => x.Get(id)).Returns(phone);
 
             //Act
