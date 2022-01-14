@@ -51,6 +51,8 @@ namespace Phoneshop.WinForms
                 messages.AppendLine("Type is required");
             if (string.IsNullOrEmpty(txtDescription.Text))
                 messages.AppendLine("Description is required");
+            if (!decimal.TryParse(txtPrice.Text, out _))
+                messages.AppendLine("Price is invalid. It has to be a decimal number.");
             if (string.IsNullOrEmpty(txtPrice.Text) || Convert.ToDecimal(txtPrice.Text) < 0)
                 messages.AppendLine("Price is invalid. It can't be zero or lower.");            
             if (string.IsNullOrEmpty(txtStock.Text) || !int.TryParse(txtStock.Text, out _))
