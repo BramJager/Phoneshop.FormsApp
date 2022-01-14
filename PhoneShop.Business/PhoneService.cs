@@ -37,7 +37,7 @@ namespace Phoneshop.Business
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentNullException(nameof(query));
 
-            var phonesFromDb = phoneRepository.Get().Where(x => x.FullName.Contains(query));
+            var phonesFromDb = phoneRepository.GetWithRelatedData(d => d.Brand).Where(x => x.FullName.Contains(query));
 
             return phonesFromDb;
         }

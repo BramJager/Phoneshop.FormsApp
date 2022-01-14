@@ -9,10 +9,7 @@ namespace PhoneShop.TestEF.PhoneTests
 {
     public class Get : BaseTest
     {
-        public Get() : base()
-        {
-
-        }
+        public Get() : base() { }
 
         [Theory]
         [InlineData(0)]
@@ -76,20 +73,20 @@ namespace PhoneShop.TestEF.PhoneTests
             Assert.Equal("Value cannot be null. (Parameter 'query')", ex.Message);
         }
 
-        //[Fact]
-        //public void Should_GetListOfPhones_WhenQueryIsNotEmptyOrNull()
-        //{
-        //    //Arrange
-        //    var query = "test";
-        //    List<Phone> list = new() { new Phone() { Id = 1, Brand = new Brand() { Name = "test" } }, new Phone() };
-        //    phoneRepository.Setup(x => x.Get()).Returns(list);
+        [Fact]
+        public void Should_GetListOfPhones_WhenQueryIsNotEmptyOrNull()
+        {
+            //Arrange
+            var query = "test";
+            List<Phone> list = new() { new Phone() { Id = 1, Type = "test", Brand = new Brand() { Name = "test" } }, new Phone() { Id = 2, Type = "nope", Brand = new Brand() { Name = "nope" } } };
+            phoneRepository.Setup(x => x.GetWithRelatedData(d => d.Brand)).Returns(list);
 
-        //    //Act
-        //    var resultList = phoneService.Search(query);
+            //Act
+            var resultList = phoneService.Search(query);
 
-        //    //Assert
-        //    phoneRepository.Verify(x => x.Get(), Times.Once);
-        //    Assert.Equal(1, resultList.Count());
-        //}
+            //Assert
+            phoneRepository.Verify(x => x.GetWithRelatedData(d => d.Brand), Times.Once);
+            Assert.Single(resultList);
+        }
     }
 }

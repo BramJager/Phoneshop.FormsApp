@@ -45,5 +45,24 @@ namespace PhoneShop.TestEF.PhoneTests
             phoneRepository.Verify(x => x.Get(id), Times.Once);
             brandRepository.Verify(x => x.Get(), Times.Once);
         }
+
+        [Fact]
+        public void Should_CreateListOfPhones()
+        {
+            //Arrange
+            int id = 1;            
+            var brand = new Brand() { Id = id, Name = "test" };
+            var list = new List<Phone>() { new Phone() { Brand = brand}, new Phone() { Brand = brand }, new Phone() { Brand = brand } };
+            phoneRepository.Setup(x => x.Get(id)).Returns((Phone)null);
+            brandRepository.Setup(x => x.Get()).Returns(new List<Brand>() { brand });
+
+            //Act
+            phoneService.Create(list);
+
+            //Assert
+            phoneRepository.Verify(x => x.Create(It.IsAny<Phone>()), Times.Exactly(3));
+            phoneRepository.Verify(x => x.Get(It.IsAny<int>()), Times.Exactly(3));
+            brandRepository.Verify(x => x.Get(), Times.Exactly(3));
+        }
     }
 }
