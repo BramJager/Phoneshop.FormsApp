@@ -60,7 +60,7 @@ namespace PhoneShop.TestEF.PhoneTests
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void Should_ThrowArgumentNullException_When_QueryIsNullOrEmpty(string query)
+        public void Should_ThrowArgumentNullExceptionOnSearch_When_QueryIsNullOrEmpty(string query)
         {
             //Arrange
 
@@ -74,7 +74,7 @@ namespace PhoneShop.TestEF.PhoneTests
         }
 
         [Fact]
-        public void Should_GetListOfPhones_WhenQueryIsNotEmptyOrNull()
+        public void Should_GetListOfPhonesOnSearch_WhenQueryIsNotEmptyOrNull()
         {
             //Arrange
             var query = "test";

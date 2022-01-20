@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 
 namespace Phoneshop.Business.Interfaces
 {
-
     public interface IRepository<T> where T : class
     {
         T Get(int id);
@@ -15,15 +14,5 @@ namespace Phoneshop.Business.Interfaces
         void Save();
         IQueryable<T> GetWithRelatedData(int id, params Expression<Func<T, object>>[] includes);
         IEnumerable<T> GetWithRelatedData(params Expression<Func<T, object>>[] includes);
-
-        //Func<SqlDataReader, T> Mapper { set; }
-
-        //void Status(bool IsError, string strErrMsg);
-
-        //void GetDataCount(int count);
-        //void ExecuteNonQuery(SqlCommand command);
-        //IEnumerable<T> GetRecords(SqlCommand command);
-        //T GetRecord(SqlCommand command);
-        //IEnumerable<T> ExecuteStoredProc(SqlCommand command, string CountColName = "TotalCount");
     }
 }
